@@ -1,15 +1,15 @@
 import React from 'react';
 
 import Page from './page'
-
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import ToolList from './tools_list'
 
 function Home() {
 
     return (
         <div>
-            <Page></Page>
+            <Page body={
+              <ToolList></ToolList>
+            }></Page>
         </div>
     );
 }
