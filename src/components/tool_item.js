@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -12,17 +13,19 @@ const useStyles = makeStyles({
       height: '150px',
       margin: 2,
     },
-  });
+});
 
 function ToolItem(props) {
     const classes = useStyles();
+    let history = useHistory();
+
     return (
         <div>
             <Card className={classes.card}>
-                <CardActionArea style={{height: '100%'}} onClick={() => console.log("works")}>
+                <CardActionArea style={{height: '100%'}} onClick={() => history.push(props.href)}>
                     <CardContent>
-                        <Icon style={{ fontSize: 42 }}>{props.icon ? props.icon : "apps"}</Icon>
-                        <Typography gutterBottom variant="h5" component="h3">
+                        <Icon color="primary" style={{ fontSize: 42 }}>{props.icon ? props.icon : "apps"}</Icon>
+                        <Typography color="primary" gutterBottom variant="h5" component="h3">
                            {props.title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">

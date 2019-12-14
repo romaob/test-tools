@@ -1,16 +1,37 @@
 import React,  { useState } from 'react';
+import {Typography, TextField} from '@material-ui/core';
+
+import ToolBase from "./tool_base";
 
 export default function TextReverse(props) {
 
     const [text, setText] = useState("");
 
     return (
-        <div>
-            <h1>Text Reverse</h1>
-            <h2>Place the text bellow</h2>
-            <textarea onInput={(event) => setText(event.target.value)}></textarea>
-            <h2>Reverse Text</h2>
-            <textarea readOnly value={text.split("").reverse().join("")}></textarea>
-        </div>
+        <ToolBase
+                title={"Text Reverse"}             
+                desc={"Reverse the order of each character in a text"}
+                body={                    
+                    <div>
+                        <Typography color="primary" component="p">
+                            Place the text bellow:
+                        </Typography>
+
+                        <TextField multiline variant="outlined" rowsMax="10" rows="10"
+                            style={{width: '100%'}}
+                            onInput={(event) => setText(event.target.value)}
+                        ></TextField>
+
+                        <Typography color="primary" component="p">
+                            Result:
+                        </Typography>                        
+                        <TextField readOnly multiline variant="outlined" rowsMax="10" rows="10"
+                            style={{width: '100%'}}
+                            value={text.split("").reverse().join("")}
+                        ></TextField>
+                    </div>
+                }
+        >
+        </ToolBase>             
     );
 }

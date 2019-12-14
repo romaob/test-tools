@@ -8,25 +8,27 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 import ToolBase from "./tool_base";
 
-const useStyles = makeStyles({
+
+
+export default function TextCounter(){ 
+    const theme = useTheme();
+    const useStyles = makeStyles({
     
-    filterpaper: {
-        display: "inline-block", 
-        paddingLeft: 10,
-        margin: 5,
-        "& p": {
-            display: "inline-block",
+        filterpaper: {
+            display: "inline-block", 
+            paddingLeft: 10,
+            margin: 5,
+            backgroundColor: theme.palette.secondary[200],
             "& *": {
+                display: "inline-block",
                 marginRight: 5
             }
-        }
-    },
-  });
-
-export default function TextCounter(){    
+        },
+      });   
     const classes = useStyles();
 
     const [nextid, setNextid] = useState(1);
@@ -90,12 +92,14 @@ export default function TextCounter(){
     
     return (
         <div>
-            <ToolBase title={"Characters Counter"}
+            <ToolBase             
+                title={"Characters Counter"}             
+                desc={"Count in a text the amount of characters, lines, words, and more..."}
                 body={
                     <div>
                                                 
-                        <Typography component="p">
-                            Place the text bellow.
+                        <Typography color="primary" component="p">
+                            Place the text bellow:
                         </Typography>
                         <TextField multiline variant="outlined" rowsMax="10" rows="10"
                             style={{width: '100%'}}
@@ -121,15 +125,19 @@ export default function TextCounter(){
                         </Grid>
                         
                         <Divider style={{margin: 5}}/>
-
-                        <Typography component="p">
-                            Add filters
-                        </Typography>
                         
-                        <div>
-                            <TextField size="small" value={filter} onChange={(event) => setFilter(event.target.value)}/>
-                            <Button variant="contained"  color="primary" style={{marginLeft: 15}} onClick={() => addFilter(filter)} >Add</Button>
-                        </div>
+                        <Grid container style={{textAlign: "left"}}>                            
+                            <Grid item xs={12}>
+                                <Typography color="primary" component="p">
+                                    Add some filters
+                                </Typography>
+                            </Grid>
+                            
+                            <Grid item xs>
+                                <TextField size="small" value={filter} onChange={(event) => setFilter(event.target.value)}/>
+                                <Button variant="contained"  color="primary" style={{marginLeft: 15}} onClick={() => addFilter(filter)} >Add</Button>                        
+                            </Grid>
+                        </Grid>
                         
                         
                         <Typography variant="body2" color="textSecondary" component="p">
@@ -137,15 +145,15 @@ export default function TextCounter(){
                         </Typography>  
                         {filters.map(fil => (
                             <Paper key={fil.id} className={classes.filterpaper}>
-                                <p>
-                                <Typography variant="h6" component="p">
+                                <Typography variant="h6" component="p" color="secondary">
                                     {fil.qtd}
                                 </Typography>
-                                </p>
-                                "{fil.text.length > 13 ? fil.text.substring(0,10) + "..." : fil.text}"
+                                <Typography component="p" color="secondary">
+                                    "{fil.text.length > 13 ? fil.text.substring(0,10) + "..." : fil.text}"
+                                </Typography>
                                 <IconButton aria-label="delete" size="small" style={{margin: 5}}
                                      onClick={() => remFilter(fil.id)}>
-                                    <Icon>delete</Icon>
+                                    <Icon color="secondary">delete</Icon>
                                 </IconButton>
                             </Paper>
                         ))}   

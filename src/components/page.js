@@ -1,13 +1,24 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
+import { useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Title from './title'
-import ToolItem from './tool_item'
 
 function Page(props) {
+    const theme = useTheme();
+      
+    const useStyles = makeStyles({      
+        page: {
+            padding: theme.padding,
+        },
+    });
+
+    const classes = useStyles();
+
     return (
-        <div>
+        <div className={classes.page}>
             <Grid container spacing={1}>
                 
                   <Grid item xs={12} md={2}></Grid>     
