@@ -48,12 +48,12 @@ function ToolBase(props) {
                                 
                         
                         <Typography className={classes.title} gutterBottom variant="h4">
-                            {props.title}
+                            {props.item.title}
                         </Typography>
                             </Grid>
                         </Grid>
                         <Typography className={classes.description} color="textSecondary" variant="body2" component="p">
-                            {props.desc}
+                            {props.item.desc2}
                         </Typography>                        
                         <Divider style={{margin: 5}}/>
                         {props.body}

@@ -18,18 +18,17 @@ const useStyles = makeStyles({
 function ToolItem(props) {
     const classes = useStyles();
     let history = useHistory();
-
     return (
         <div>
             <Card className={classes.card}>
-                <CardActionArea style={{height: '100%'}} onClick={() => history.push(props.href)}>
+                <CardActionArea style={{height: '100%'}} onClick={() => history.push(props.item.href)}>
                     <CardContent>
-                        <Icon color="primary" style={{ fontSize: 42 }}>{props.icon ? props.icon : "apps"}</Icon>
+                        <Icon color="primary" style={{ fontSize: 42 }}>{props.item.icon ? props.item.icon : "apps"}</Icon>
                         <Typography color="primary" gutterBottom variant="h5" component="h3">
-                           {props.title}
+                           {props.item.title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                            {props.desc}
+                            {props.item.desc}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

@@ -12,9 +12,12 @@ import { useTheme } from '@material-ui/core/styles';
 
 import ToolBase from "./tool_base";
 
-
+import Tools from '../values/tools';
 
 export default function TextCounter(){ 
+    const tool = Tools.text_tools.text_counter;
+    console.log(Tools);
+    console.log(tool);
     const theme = useTheme();
     const useStyles = makeStyles({
     
@@ -93,8 +96,7 @@ export default function TextCounter(){
     return (
         <div>
             <ToolBase             
-                title={"Characters Counter"}             
-                desc={"Count in a text the amount of characters, lines, words, and more..."}
+                item={tool}      
                 body={
                     <div>
                                                 
