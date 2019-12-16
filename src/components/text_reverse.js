@@ -2,15 +2,16 @@ import React,  { useState } from 'react';
 import {Typography, TextField} from '@material-ui/core';
 
 import ToolBase from "./tool_base";
+import Tools from '../values/tools';
 
 export default function TextReverse(props) {
+    const tool = Tools.text_tools.text_reverse;
 
     const [text, setText] = useState("");
 
     return (
         <ToolBase
-                title={"Text Reverse"}             
-                desc={"Reverse the order of each character in a text"}
+                item={tool}    
                 body={                    
                     <div>
                         <Typography color="primary" component="p">

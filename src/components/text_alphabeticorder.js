@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import {Typography, TextField, Radio, RadioGroup, FormControl, FormControlLabel} from '@material-ui/core';
 
 import ToolBase from "./tool_base";
+import Tools from '../values/tools';
 
 export default function AlphabeticOrder(props) {
+    const tool = Tools.text_tools.text_alphabeticorder;
 
     const [text, setText] = useState("");
     const [type, setType] = useState("AZ");
@@ -26,8 +28,7 @@ export default function AlphabeticOrder(props) {
     return (
                 
         <ToolBase
-            title={"Alphabetic Ordere"}             
-            desc={"Reorder a list of itens in alphabetic order ascendent or descendent. Each element must be in a row"}
+            item={tool}             
             body={  
                 <div>
                     <Typography color="primary" component="p">

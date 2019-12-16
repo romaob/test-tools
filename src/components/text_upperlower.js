@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import {Typography, TextField, Radio, RadioGroup, FormControl, FormControlLabel} from '@material-ui/core';
 import ToolBase from "./tool_base";
 
+import Tools from '../values/tools';
+
 export default function TextUpperLower(props) {
+    const tool = Tools.text_tools.text_upperlower;
     
     const [text, setText] = useState("");
     const [type, setType] = useState("upper");
@@ -25,8 +28,7 @@ export default function TextUpperLower(props) {
 
     return (
         <ToolBase
-                title={"Text Case Changer"}             
-                desc={"Change the case of a text to UPPER, lower or First Letter"}
+                item={tool} 
                 body={
                     <div>
                         <Typography color="primary" component="p">
