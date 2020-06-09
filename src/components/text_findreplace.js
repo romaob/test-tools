@@ -1,4 +1,4 @@
-import React,  { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 import {Typography, TextField, Divider, Grid, Button} from '@material-ui/core';
 
 import ToolBase from "./tool_base";
@@ -14,6 +14,10 @@ function TextFindReplace(props) {
     const [textPos, setTextPos] = useState("");
     const [qtdReplaced, setQtdReplaced] = useState(0);
 
+    useEffect(() => {
+
+    });
+    
     function find(something, next = false){
 
     }
@@ -40,7 +44,7 @@ function TextFindReplace(props) {
                     
                     <Grid container spacing={2} alignItems="center">
                         <Grid item xs={6}>
-                            <TextField label="Text to find" size="small" value={textToFind} onChange={(event) => find(event.target.value)}/>
+                            <TextField label="Text to find" size="small" value={textToFind} onChange={(event) => {setTextToFind(event.target.value); find(event.target.value)}}/>                                                        
                         </Grid>
                         <Grid item xs={6}>
                             <TextField label="Text to replace" size="small" value={textToFind} onChange={(event) => find(event.target.value)}/>

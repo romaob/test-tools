@@ -75,3 +75,25 @@ function App() {
 }
 
 export default App;
+
+
+/*
+    Features
+    * Aleatory
+      - Choose an item in a list
+      - Randomize a list
+      - Trow dices
+      - generate sorted numbers 
+    
+    * Dates
+      - Day counter between dates
+      - Calculate date with an increase or decrease of days
+      - Hours calculator
+      - Age calculator
+      - Stopwatch
+      - Timer
+      - Day of the year and progress
+
+    * Charts
+      - Easy chart  
+*/
