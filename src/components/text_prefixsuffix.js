@@ -9,23 +9,28 @@ function TextPrefixSuffix(props) {
     const tool = Tools.text_tools.text_prefixsuffix;
 
     const [text, setText] = useState("");
-    const [prefixAdd, setPrefixAdd] = useState("");
-    const [suffixAdd, setSuffixAdd] = useState("");
+    const [textFinal, setTextFinal] = useState("");
+    const [textToAdd, setTextToAdd] = useState("");
 
-    function addPrefix(){
-        let new_text = text;
-        new_text = new_text.split("\n").map((item) => {
-            item = prefixAdd + item;
-        }).join("\n");
-        setText(new_text);
-    }
-
-    function addSuffix(){
-        
+    function addToText(prefix, suffix){
+        if(textToAdd != ""){
+            let new_text = textFinal;
+            new_text = new_text.split("\n").map((item) => {
+                if(prefix) item = `${textToAdd}${item}`;
+                if(suffix) item = `${item}${textToAdd}`;
+                return item;
+            }).join("\n");
+            setTextFinal(new_text);
+        }
     }
 
     function addNumber(){
-        
+        let new_text = textFinal;
+        new_text = new_text.split("\n").map((item, index) => {
+            item = `${(index+1)} ${item}`;
+            return item;
+        }).join("\n");
+        setTextFinal(new_text);
     }
 
     return (
@@ -40,30 +45,37 @@ function TextPrefixSuffix(props) {
                     <TextField multiline variant="outlined" rowsMax="10" rows="10"
                         style={{width: '100%'}}
                         value={text}
-                        onInput={(event) => setText(event.target.value)}
+                        onInput={(event) => {setText(event.target.value); setTextFinal(event.target.value)}}
                     ></TextField>
 
                     <Divider style={{margin: 5}}></Divider>
 
                     <Grid container spacing={2} alignItems="center">
-                        <Grid item xs={6}>
-                            <TextField label="Prefix" size="small" value={prefixAdd} onChange={(event) => setPrefixAdd(event.target.value)}/>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField label="Suffix" size="small" value={prefixAdd} onChange={(event) => setSuffixAdd(event.target.value)}/>
+                        <Grid item xs={12}>
+                            <TextField label="Text to add" size="small" value={textToAdd} onChange={(event) => setTextToAdd(event.target.value)}/>
                         </Grid>
                         <Grid item xs>
-                            <Button variant="contained"  color="primary"  onClick={() => addPrefix()} >Add prefix</Button>                        
+                            <Button variant="contained"  color="primary"  onClick={() => addToText(true)} >Add as prefix</Button>                        
                         </Grid>
                         <Grid item xs>
-                            <Button variant="contained"  color="primary"  onClick={() => addSuffix()} >Add suffix</Button>                        
+                            <Button variant="contained"  color="primary"  onClick={() => addToText(null,true)} >Add as suffix</Button>                        
                         </Grid>
                         <Grid item xs>
-                            <Button variant="contained"  color="primary"  onClick={() => addNumber()} >Add number</Button>                        
+                            <Button variant="contained"  color="primary"  onClick={() => addNumber()} >Enumerate</Button>                        
                         </Grid>
                     </Grid>
 
                     <Divider style={{margin: 5}}></Divider>
+
+                    <Typography color="primary" component="p">
+                            Result:
+                    </Typography>
+
+                    <TextField readOnly multiline variant="outlined" rowsMax="10" rows="10"
+                        style={{width: '100%'}}
+                        value={textFinal}
+                    ></TextField>
+
                 </div>
             }
         >
